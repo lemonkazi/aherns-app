@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <!--meta http-equiv="Content-Security-Policy" content="default-src *; script-src * 'unsafe-inline' 'unsafe-eval'; object-src *; style-src * 'unsafe-inline'; img-src * data:; media-src *; frame-src *; font-src *; connect-src *" -->
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="googlebot" content="noindex, nofollow">
+    <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+    <!-- get ajax for googlespreadsheet -->
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="js/modernizr.js" type="text/javascript"></script>
+    <script type="text/javascript" src="js/chosen.jquery.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.6.2/chosen.jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.6.2/chosen.min.css">
+    <link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.6.2/chosen.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="http://select2.github.io/select2/select2-3.5.1/select2.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://select2.github.io/select2/select2-3.5.1/select2.css">
+    <script>
+    // if (!Modernizr.datalistelem) {
+    //      alert('This browser does not support all Aherns app functionality - suggest using another browser');
+    // }
+    Modernizr.load({
+        test: Modernizr.datalistelem,
+        nope: ['js/jquery.datalist.js', 'js/load.datalist.js']
+    });
+    </script>
+    <style type="text/css">
+        body {
+        font-family: arial;
+    }
+    
+    .container {
+        float: left;
+        width: 100%;
+    }
+    
+    .row {
+        float: left;
+        width: 100%;
+        /* padding-right: 5px;
+    padding-left: 5px;*/
+    }
+    .allb {
+        padding-bottom: 25px;
+    }
+    
+    .col-md-12 {
+        float: left;
+        width: 100%;
+    }
+    
+    .col-md-6 {
+        float: left;
+        width: 66%;
+        /*padding: 0 6px;*/
+        margin-top: 1px;
+    }
+    
+    .col-md-4 {
+        float: left;
+        width: 33.33333333333333%;
+    }
+    
+    .col-md-3 {
+        float: left;
+        width: 25%;
+    }
+    
+    .col-md-2 {
+        float: left;
+        width: 16.666666666666664%;
+    }
+    
+    .chosen-container {
+        /* display: block; */
+        float: left;
+        font-weight: bold !important;
+        height: 42px !important;
+        text-align: center !important;
+        width: 96% !important;
+        margin-left: 4px;
+        font-size: 13px !important;
+        border: 2px solid black !important;
+        background-color: rgb(211, 211, 211) !important;
+    }
+    
+    .chosen-container-active.chosen-with-drop .chosen-single div b {
+        margin-top: 9px;
+    }
+    
+    .chzn-container-single .chzn-single {
+        height: 26px;
+        line-height: 26px;
+    }
+    
+    .chosen-container-single .chosen-single {
+        font-weight: bold;
+        padding: 7px 0 11px !important;
+        height: 42px !important;
+        text-align: center !important;
+        width: 99% !important;
+        font-size: 20px !important;
+        /* font-weight: bold; */
+        /* border: 2px solid black; */
+        background: rgb(211, 211, 211) !important;
+        ;
+        color: black !important;
+        border: none !important;
+    }
+    
+    .select2-dropdown-open .select2-choice {
+        font-weight: bold;
+        padding: 7px 0 11px;
+        /* height: 37px; */
+        text-align: center;
+        width: 99%;
+        font-size: 20px;
+        /* font-weight: bold; */
+        /* border: 2px solid black; */
+        background: rgb(211, 211, 211);
+        color: black;
+        border: none;
+    }
+    #qty {
+        font-size:20px;
+    }
+    
+    .select2-results li {
+        padding: 2px 0 2px;
+        /* width: 100%; */
+    }
+    
+    .select2-container .select2-choice {
+        font-weight: bold;
+        padding: 4px 0 8px;
+        /* height: 37px; */
+        text-align: center;
+        /* width: 99%; */
+        font-size: 20px;
+        /* font-weight: bold; */
+        /* border: 2px solid black; */
+        background: rgb(211, 211, 211);
+        color: black;
+        border: none;
+    }
+    
+    .select2-container {
+        float: left;
+        /* position: relative; */
+        /* left: 20%; */
+        font-weight: bold;
+        height: 47px;
+        text-align: center;
+        width: 98% !important;
+        font-size: 13px;
+        border: 2px solid black;
+        background-color: rgb(211, 211, 211);
+    }
+    .chosen-container-single .chosen-single span {
+   
+        margin: 0 auto;
+        text-align: center;
+        vertical-align: middle;
+    }
+    
+    .select2-drop {
+        float: left;
+        /* position: relative; */
+        /* left: 20%; */
+        font-weight: bold;
+        /* height: 42px; */
+        text-align: center;
+        width: 59% !important;
+        font-size: 13px;
+        border: 2px solid black;
+        background-color: rgb(211, 211, 211);
+    }
+    
+    .select2-drop {
+        float: left;
+        /* position: relative; */
+        /* left: 20%; */
+        font-weight: bold;
+        /* height: 42px; */
+        text-align: center;
+        width: 62% !important;
+        font-size: 13px;
+        border: 2px solid black;
+        background-color: rgb(211, 211, 211);
+    }
+    #AhernButton, #OtherButton {
+        width: 49%;
+        height: 40px;
+        font-size: 0px;
+        text-align: center;
+
+
+       
+       
+       
+    }
+    #AhernButton span, #OtherButton span{
+        width: 49%;
+        height: 40px;
+        font-size: 21px;
+        text-align: center;
+        padding-left: 5px;
+       
+       
+       
+    }
+    #emailButton, #SMSButton, #deleteALLButton {
+        
+        width: 32.20%;
+        height: 40px;
+        font-size: 0px;
+        margin-top: 1%;
+        padding-left: 0;
+            border-radius: 0px;
+            
+            text-align: center;
+      
+    }
+    
+    #emailButton span, #SMSButton span, #deleteALLButton span{
+        
+        width: 32.20%;
+        height: 40px;
+        font-size: 28px;
+        margin-top: 1%;
+        padding-left: 0;
+            border-radius: 0px;
+            
+            text-align: center;
+      
+    }
+    #input {
+            font-weight: bold;
+        height: 40px;
+        text-align: center;
+        width: 100%;
+        font-size: 19px;
+        background-color: rgb(211, 211, 211);
+        border: 2px solid black;
+    }
+
+    
+    .select2-offscreen,
+    .select2-offscreen:focus {
+        font-weight: bold;
+        padding: 7px 0 11px;
+        /* height: 37px; */
+        text-align: center;
+        /* width: 99%; */
+        font-size: 20px;
+        /* font-weight: bold; */
+        /* border: 2px solid black; */
+        background: rgb(211, 211, 211);
+        color: black;
+        border: none;
+    }
+    
+    .select2-search input {
+        font-weight: bold;
+        /* height: 42px; */
+        text-align: center;
+        /* width: 100% !important; */
+        font-size: 13px;
+        border: 2px solid black;
+        background-color: rgb(211, 211, 211);
+    }
+
+    
+    ::-webkit-input-placeholder {
+        /* Chrome */
+        color: black;
+    }
+    
+    :-ms-input-placeholder {
+        /* IE 10+ */
+        color: black;
+    }
+    
+    ::-moz-placeholder {
+        /* Firefox 19+ */
+        color: black;
+        opacity: 1;
+    }
+    
+    :-moz-placeholder {
+        /* Firefox 4 - 18 */
+        color: black;
+        opacity: 1;
+    }
+    /*@media all and (min-width: 50px)   {  body  { font-size:0.1em;  } }
+    @media all and (min-width: 100px)  {  body  { font-size:0.2em;  } }
+    @media all and (min-width: 200px)  {  body  { font-size:0.4em;  } }*/
+    @media all and (max-width: 300px)  { /* body  { font-size:0.6em;  } */
+        #AhernButton, #OtherButton {
+            width: 49%;
+            height: 40px;
+            font-size: 15px;
+            
+                
+        }
+        #qty {
+            font-size: 16px;
+        }
+        #emailButton, #SMSButton, #deleteALLButton {
+            font-size: 20px;
+            width: 31.2%;
+            padding-left: 0;
+            border-radius: 0px;
+            
+            text-align: center;
+                
+        }
+        .chosen-container-single .chosen-single {
+            font-weight: bold;
+            padding: 7px 0 11px !important;
+            height: 42px !important;
+            text-align: center !important;
+            width: 99% !important;
+            font-size: 16px !important;
+            /* font-weight: bold; */
+            /* border: 2px solid black; */
+            background: rgb(211, 211, 211) !important;
+            color: black !important;
+            border: none !important;
+        }
+        #input {
+            font-weight: bold;
+            height: 40px;
+            text-align: center;
+            width: 100%;
+            font-size: 16px;
+            background-color: rgb(211, 211, 211);
+            border: 2px solid black;
+        }
+        .col-md-6 {
+            float: left;
+            width: 62%;
+            padding: 0 5px;
+            margin-top: 1px;
+        }
+    }
+    
+    @media screen and (-webkit-min-device-pixel-ratio:0) {
+        /* Safari and Chrome */
+    #qty {
+        width: 100%;
+        height: 40px;
+        margin-top: 1%;
+    }
+        /*  #products-list {
+     display:block;
+    }
+    #products-list {
+      display:none;
+    }
+
+
+    ::i-block-chrome,#products-list {
+     display:block;
+     float: left;
+     width: 263px;
+    }
+    ::i-block-chrome,.chrome-display {
+     display:none !important;
+    }
+    ::i-block-chrome,#qty {
+     float:left;
+    }*/
+    /*::i-block-chrome,#qty {
+        width: 80% !important;
+        height: 30px;
+        margin-top: 2%;
+        display:none;
+    }*/
+    }
+    </style>
+    <title>Shopping List</title>
+    <script>
+    
+    </script>
+    <script type='text/javascript'>
+    //<![CDATA[
+    var c = 1;
+    
+    //--------------------------------------------------------------
+
+    $(document).ready(function(e) {
+
+
+         var ua = navigator.userAgent.toLowerCase();
+            if (ua.indexOf("iphone") > -1 || ua.indexOf("ipad") > -1) {
+
+
+                var v = (navigator.appVersion).match(/OS (\d+)_(\d+)_?(\d+)?/);
+                var ver = [parseInt(v[1], 10), parseInt(v[2], 10), parseInt(v[3] || 0, 10)];
+                if (ver[0] >= 8) {
+                    
+                     //document.getElementById("OtherButton").style.textAlign  = 'left';
+                     document.getElementById("emailButton").style.paddingLeft  = 'left';
+                     document.getElementById("SMSButton").style.paddingLeft  = 'left';
+                     document.getElementById("deleteALLButton").style.paddingLeft = 'left';
+                 
+
+                   
+                    //$("#products").select2(configParamsObj);
+                //     $('#products').chosen({
+                //     width: '100%'
+                // });
+                } else {
+                    
+                   // document.getElementById("OtherButton").style.textAlign  = 'left';
+                     document.getElementById("emailButton").style.paddingLeft  = 'left';
+                     document.getElementById("SMSButton").style.paddingLeft  = 'left';
+                     document.getElementById("deleteALLButton").style.paddingLeft = 'left';
+                         // padding-left: 0px;
+               
+                }
+
+
+            }
+
+        // localStorage.clear();
+        // //ready
+        // if( !window.localStorage) {
+        //     // no localStorage (old browser) - either fall back to cookie method,
+        //     // or just do nothing and skip the whole tour thing - if the user
+        //     // can't be bothered to upgrade, why should you bother to accomodate them?
+        //      // alert('ssss1');
+
+        // }
+        // else {
+        //     if( !window.localStorage.isReturningVisitor) {
+        //         // do all the tour stuff here
+        //         window.localStorage.isReturningVisitor = true;
+        //         alert('ss');
+        //     }
+        // }
+        // this is the first time
+        //localStorage.clear();
+        if (! localStorage.noFirstVisit) {
+            // show the element
+            // and do the animation you want
+            termsCondition();
+           // document.getElementById('first').style.display = 'block';
+
+            // check this flag for escaping this if block next time
+            localStorage.noFirstVisit = "1";
+        }
+
+
+        if (localStorage.length) {
+            for (var index = 0; index < localStorage.length; index++) {
+                //alert(localStorage.key(index));
+                // check to see if its one of our shopping list items
+                if (localStorage.key(index).indexOf('ShoppingListStorage') >= 0) {
+                    // Found a match! so add a record to list
+
+                    //AddText via localStorage
+                    var input = localStorage.getItem(localStorage.key(index));
+
+                    var node = document.createElement("P");
+                    node.setAttribute('id', localStorage.key(index));
+
+                    // add checkbox
+                    var checkbox = document.createElement('input');
+                    checkbox.setAttribute('type', 'checkbox');
+                    checkbox.setAttribute('value', 'value');
+                    checkbox.setAttribute('id', localStorage.key(index));
+                    checkbox.style.marginRight = "20px";
+                    node.appendChild(checkbox);
+
+                    //add text element
+                    var textnode = document.createTextNode(input);
+                    node.appendChild(textnode);
+
+                    // add delete button
+                    var removenode = document.createElement("input");
+                    removenode.setAttribute('type', 'button');
+                    removenode.setAttribute('value', 'X');
+                    removenode.style.marginLeft = "20px";
+                    removenode.setAttribute("onclick", "removeText('" + localStorage.key(index) + "')");
+                    node.appendChild(removenode);
+                    c++;
+                    document.getElementById('do').appendChild(node);
+                    //
+                } // this is end of IF statement
+            }
+        } else {
+            //localStorage.clear();
+            //localStorage == null
+            // alert('ssss');
+            // if( !window.localStorage.isReturningVisitor) {
+                // do all the tour stuff here
+              //  window.localStorage.isReturningVisitor = true;
+               // alert('ss');
+                //termsCondition();
+            //}
+        }
+
+
+        // add strikeout text when checkbox is clicked
+        $('[type="checkbox"]').click(function() {
+            var element = $(this).parent();
+            if ($(this).is(':checked')) {
+                // element.wrap('<del>');
+                element.addClass('line-through');
+            } else {
+                //element.unwrap('<del>');
+                element.removeClass('line-through');
+            }
+
+
+        });
+        // now add the GoogleSpread sheet list
+        createLIST()
+
+    });
+    var $dialog = $('<div></div>');
+    //]]>
+    </script>
+    <script>
+    
+    </script>
+</head>
+
+<body>
+    <img src="http://itchyapps.com.au/images/application/5/features/image_gallery/307/56dbd3fd3bdfb.jpg" alt="AHERN" height="auto" width="100%">
+    <button onclick='AHERNlistLoad();' id='AhernButton' style=""><span>Fruit/Veg</span></button>
+    <button onclick='OTHERlistLoad();' id='OtherButton' style=""><span>Deli/Groceries</span></button>
+    <script>
+    // change the button colours
+    document.getElementById("AhernButton").style.backgroundColor = 'lightblue';
+    document.getElementById("OtherButton").style.backgroundColor = 'transparent';
+    </script>
+    <!-- ensure the height properity is set to px and not %. Causes the elements to squash when keyboard is loaded -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2">
+                <input type='text' id='qty' name="qty" placeholder='QTY' style="font-weight: bold;text-align:center;background-color:#d3d3d3;border: 2px solid black">
+
+            </div>
+            <div class="col-md-6">
+                <input type='text' list='products' id='input' name="input" placeholder='Select Fruit/Veg' onclick="this.value='';" style="display: none;">
+                <select id='products' style="float: left;
+          padding: 0px 0px 0px 15px;
+    font-weight: bold !important;
+    height: 46px !important;
+    text-align: center !important;
+    width: 98% !important;
+    margin-left: 4px;
+    font-size: 20px !important;
+    border: 2px solid black !important;
+    background-color: rgb(211, 211, 211) !important;">
+                    <option value="">Select Fruit/Veg</option>
+                    <!-- <select id='products-list' style="font-weight: bold;height:40px;text-align:center;margin-top:1%;font-size:19px;background-color:#d3d3d3;border: 2px solid black; padding: 1px 0px;">
+          </select> -->
+                </select>
+            </div>
+            <div class="col-md-2">
+                <input type="button" id='button' name='button' onClick="addText()" value="+" style="height:46px;width:100%;font-size:20px;margin-top:2%;float: right;background-color:#d3d3d3;border: 2px solid black">
+            </div>
+        </div>
+        <div class="row allb">
+            <button onclick='openAhernEmail();' id='emailButton'><span>Email</span></button>
+            <button onclick='openSMS();' id='SMSButton'><span>Text</span></button>
+            <button onclick='deleteALLAhern();' id='deleteALLButton' style='background: #e24848;'><span>Clear</span></button>
+        </div> 
+
+        <div id="do" style="text-align:center; vertical-align:middle; line-height: 1;font-size: 20px;"></div>
+    </div>
+</body>
+
+</html>
